@@ -19,3 +19,23 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Earn dashboard */
+.flash {
+  animation: flashEffect 0.3s ease-in-out;
+}
+
+@keyframes flashEffect {
+  0% {
+    transform: scale(1);
+    color: #000000;
+  }
+  50% {
+    transform: scale(1.1);
+    color: orange;
+  }
+  100% {
+    transform: scale(1);
+    color: #000000;
+  }
+}
