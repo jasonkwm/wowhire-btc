@@ -9,8 +9,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#EBEBEB", // Main background color
+        secondary: "#C0C0C0", // Section background color
+        accent: "#F7931A", // Bitcoin color - use for important elements (buttons, etc)
+        contrast: "#4A90E2", // Soft blue - use for card background, etc
+        tertiary: "#2C578A", // Deep blue - use for border
       },
     },
   },
