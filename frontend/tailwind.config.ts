@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        header: ["var(--font-header)"],
+        normal: ["var(--font-normal)"],
+      },
       colors: {
         background: "#EBEBEB", // Main background color
         foreground: "#C0C0C0", // Section background color
