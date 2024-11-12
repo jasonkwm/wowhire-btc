@@ -4,6 +4,8 @@ import { useState } from "react";
 import Timeslots from "./Timeslots";
 import * as Dialog from "@radix-ui/react-dialog";
 import AddHire from "./AddHire";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Page() {
   const [open, setOpen] = useState(false);
@@ -24,6 +26,9 @@ export default function Page() {
             <div className="px-5 py-1 border-2 border-primary rounded-md cursor-pointer" onClick={() => setOpen(true)}>
               Add hire
             </div>
+            <Link className="px-5 py-1 border-2 ml-2 bg-primary rounded-md cursor-pointer" href="/scan">
+              Scan QR
+            </Link>
           </div>
           <Timeslots hired={hired} />
         </div>

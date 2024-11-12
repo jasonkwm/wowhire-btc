@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { timeslot } from "./timeslot";
 import { LuArrowBigLeft, LuArrowBigRight } from "react-icons/lu";
+import { useGlobalContext } from "@/app/GlobalProvider";
 
 const Timeslots = ({ hired }: { hired: boolean }) => {
   const [day, setDay] = useState<"tuesday" | "wednesday">("tuesday");
+  const { employee } = useGlobalContext();
 
   return (
     <>
@@ -38,6 +40,12 @@ const Timeslots = ({ hired }: { hired: boolean }) => {
                     </div>
                   );
                 })}
+                {hired && time.time >= "1300" && time.time <= "1700" && (
+                  <div className="flex flex-col">
+                    <div className="h-[70%] aspect-square rounded-full bg-red-400" />
+                    <p className="text-sm">{employee[0].user.slice(0, 5)}...</p>
+                  </div>
+                )}
               </div>
             </div>
           );
