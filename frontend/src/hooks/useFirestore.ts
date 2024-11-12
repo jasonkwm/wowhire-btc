@@ -1,6 +1,5 @@
 import { db } from "../../firebaseConfig";
 import { collection, addDoc, doc, setDoc, getDoc, query, where, getDocs, DocumentData } from "firebase/firestore";
-import { User } from "../@types/user";
 
 export function useFirestore() {
   /**

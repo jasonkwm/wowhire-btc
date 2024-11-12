@@ -9,7 +9,7 @@ export default function Page() {
   const [scanResult, setScanResult] = useState("");
   const [messageColor, setMessageColor] = useState("text-black");
 
-  const handleScan = (result) => {
+  const handleScan = (result: any) => {
     try {
       localStorage.removeItem("scannedData");
       let parsedValue = JSON.parse(result[0].rawValue);
@@ -19,7 +19,7 @@ export default function Page() {
       }
 
       const currentTimestamp = new Date().getTime();
-      
+
       if (currentTimestamp - parsedValue.timestamp > 3000) {
         throw new Error("Expired QR scanned");
       }
