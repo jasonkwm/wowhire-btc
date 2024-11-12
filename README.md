@@ -35,67 +35,77 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+# Contract
+
+- CA: 0x020D4bf7b08aA7a5DBAa6a13C6a9D6083509Ff20
+- Published and Verified: [bob-sepolia](https://bob-sepolia.explorer.gobob.xyz/address/0x020D4bf7b08aA7a5DBAa6a13C6a9D6083509Ff20?tab=contract_code)
 
 # Flow & Example
-## 1. Login with metamask
-<img src="./image.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
+## 1. Login with metamask
+
+<img src="./images/image.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ## 2. Choose Your Mode
+
 For Hackathon user's will be able to choose if they would like to be a **Employer** or **Employee**.
 
-<img src="./image-1.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+<img src="./images/image-1.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ## GET HIRED (Employee)
 
 ### Availability Form
-- Employee can fill up details and pick a job type that is suitable for them.  
+
+- Employee can fill up details and pick a job type that is suitable for them.
 - Employee will also be able to choose the time slot that is suitable for them.
-<img src="./image-2.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+  <img src="./images/image-2.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ### Availability List
+
 - Employee is able to view the lists of Job Availability that they've put up.
 - If the Employee has been **Hired** for the Job, the employee may click on it to reveal their QR Code that they can use to click in to their job.
 
-<img src="./image-3.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+<img src="./images/image-3.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ### Clock in with QR
+
 - Show this QR to your Employer to start working!
 
-<img src="./image-4.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+<img src="./images/image-4.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ## HIRE SOMEONE (Employer)
+
 - Employer is able to see a list of Job postings are able to select to add more Employee.
 
-<img src="./image-5.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+<img src="./images/image-5.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ### Select Job
+
 - There will be a timeslot that the Employer is able to see, who's working on which hour/shift
 - If needed the Employer can click on `Add hire` to hire more Employees
 
-<img src="./image-10.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+<img src="./images/image-10.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ## Add Hire
+
 - Select the time that date that the Employer would like to hire for.
 
-<img src="./image-7.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+<img src="./images/image-7.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ### View and Select available Employees.
 
-<img src="./image-8.png" alt="Description of Image" width="50%" style="max-width: 600px;">  
+<img src="./images/image-8.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ### Employee hired will appear on timeslots
 
-<img src="./image-9.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+<img src="./images/image-9.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
 ## Scan Employee QR
+
 - Employer is able to scan Employees QR when they arrive to start the work!
 
-<img src="./image-11.png" alt="Description of Image" width="50%" style="max-width: 600px;">
+<img src="./images/image-11.png" alt="Description of Image" width="50%" style="max-width: 600px;">
 
-# START WORKING 
+# START WORKING
 
-<img src="./image-12.png" alt="Description of Image" width="50%" style="max-width: 600px;">
-
-
-
+<img src="./images/image-12.png" alt="Description of Image" width="50%" style="max-width: 600px;">
