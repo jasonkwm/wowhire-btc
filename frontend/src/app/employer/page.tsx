@@ -6,29 +6,24 @@ import QRCode from "qrcode";
 export default function Page() {
   useEffect(() => {
     const canvas = document.getElementById("qrcode");
-    
+
     // Define the initial data
     const qrData = {
-      name: "ETH GLOBAL",
+      name: "ENCODE x BOB",
       hourlyRate: 75,
       totalHours: 0.1666667,
       timestamp: new Date().getTime(),
-      backgroundImage: "https://cdn.glitch.global/d9dd81e2-9072-4a94-8cf0-158fee54ab3f/devconpic.jpg?v=1731358088320"
+      backgroundImage: "https://cdn.glitch.global/d9dd81e2-9072-4a94-8cf0-158fee54ab3f/devconpic.jpg?v=1731358088320",
     };
 
     // Function to update the QR code
     const updateQRCode = () => {
       qrData.timestamp = new Date().getTime();
       if (canvas) {
-        QRCode.toCanvas(
-          canvas,
-          JSON.stringify(qrData),
-          { width: 350, margin: 2 },
-          function (error) {
-            if (error) console.error(error);
-            else console.log("QR Code updated successfully!");
-          }
-        );
+        QRCode.toCanvas(canvas, JSON.stringify(qrData), { width: 350, margin: 2 }, function (error) {
+          if (error) console.error(error);
+          else console.log("QR Code updated successfully!");
+        });
       }
     };
 
@@ -43,8 +38,7 @@ export default function Page() {
     <div
       className="bg-cover bg-center min-h-screen flex items-center justify-center p-4 sm:p-8 md:p-12"
       style={{
-        backgroundImage:
-          'url("/devconBg.jpg")',
+        backgroundImage: 'url("/devconBg.jpg")',
       }}
     >
       <a
@@ -53,7 +47,7 @@ export default function Page() {
       >
         <div>
           <div className="text-black text-gray-600 mb-2">Employer QR:</div>
-          <div className="text-black text-4xl font-bold mb-4">ETH GLOBAL</div>
+          <div className="text-black text-4xl font-bold mb-4">ENCODE x BOB</div>
           <canvas id="qrcode" style={{ width: "350px", height: "350px" }}></canvas>
           <div className="text-black mt-4">Scan the QR to clock in!</div>
         </div>
