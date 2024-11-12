@@ -8,9 +8,9 @@ export function WalletOptions() {
     <button
       key={uniSatConnector[0].name}
       onClick={() => connect({ connector: uniSatConnector[0] })}
-      className="p-2 border-black border-2"
+      className="p-2 border-2 border-primary hover:bg-primary/10"
     >
-      {uniSatConnector[0].name}
+      Connect to {uniSatConnector[0].name}
     </button>
   );
 }

@@ -2,17 +2,10 @@
 import { useAccount as useSatsAccount, useBalance } from "@gobob/sats-wagmi";
 import { useAccount } from "wagmi";
 import { gatewaySDK } from "@/utils/gateway";
-import { useCallback, useEffect, useState } from "react";
-import {
-  GatewayQuote,
-  GatewayQuoteParams,
-  GatewayStrategyContract,
-  GatewayTokensInfo,
-  Token,
-} from "@gobob/bob-sdk/dist/gateway/types";
+import { useEffect, useState } from "react";
+import { GatewayQuote, GatewayQuoteParams, GatewayTokensInfo, Token } from "@gobob/bob-sdk/dist/gateway/types";
 import { WalletOptions } from "@/components/WalletOptions";
-import _, { debounce } from "lodash";
-import crypto from "crypto";
+import _ from "lodash";
 
 export default function Page() {
   const [water, setWater] = useState(false);
@@ -25,7 +18,7 @@ export default function Page() {
   const [sendAmount, setSendAmount] = useState(0.00001);
   const [refillAmount, setRefillAmount] = useState(0.00001);
   const [quoteParams, setQuoteParams] = useState<GatewayQuoteParams>();
-  const [btcOption, setBtcOption] = useState<string>();
+  const [btcOption, setBtcOption] = useState<string>("tBTC");
   const { address, connector, publicKey } = useSatsAccount();
   const { address: evmAddress } = useAccount();
   const { data: balanceData } = useBalance();
@@ -91,56 +84,82 @@ export default function Page() {
   };
 
   return (
-    <div className="container w-1/2 mx-auto my-5">
-      <div className="flex flex-col gap-1">
+    <div className="container w-full max-w-md mx-auto my-10 p-6 bg-white rounded-lg shadow-md">
+      <div className="flex flex-col gap-2">
         <WalletOptions />
       </div>
-      <div className="flex flex-col gap-1 align-middle mt-3">
-        <p>EVM Address: {evmAddress}</p>
-        <p>Address: {address}</p>
-        <p>Balance: {Number(balanceData?.total) / 1e8} BTC</p>
+      <div className="flex flex-col gap-2 mt-5 text-gray-800">
+        <p className="font-semibold">
+          EVM Address: <span className="font-normal">{evmAddress}</span>
+        </p>
+        <p className="font-semibold">
+          Address: <span className="font-normal">{address}</span>
+        </p>
+        <p className="font-semibold">
+          Balance: <span className="font-normal">{Number(balanceData?.total) / 1e8} BTC</span>
+        </p>
       </div>
-      <div className="flex flex-col gap-1 mt-3">
-        <p>From</p>
+      <div className="flex flex-col gap-3 mt-5">
+        <label className="font-semibold text-gray-700">From</label>
         <input
           name="sendAmount"
           type="number"
           onChange={(v) => handleSendAmountChange(v.currentTarget.value)}
           value={sendAmount}
+          className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <div className="flex flex-col">
-          <p>
-            Gas Refill {"("}BTC -{">"} ETH{")"}
-          </p>
+          <label className="font-semibold text-gray-700">Gas Refill (BTC → ETH)</label>
           <input
-            className="border"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             name="gasRefill"
             type="number"
             onChange={(v) => handleGasRefillChange(v.currentTarget.value)}
             value={refillAmount}
           />
         </div>
-        <p>To BOB</p>
-        <select onChange={(v) => handleSelectChange(v.currentTarget.value)} defaultValue={"tBTC"}>
+        <label className="font-semibold text-gray-700">To BOB</label>
+        <select
+          onChange={(v) => handleSelectChange(v.currentTarget.value)}
+          defaultValue={"tBTC"}
+          className="border border-gray-300 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
           {tokenOptions.map((v, i) => (
             <option key={i} value={v.symbol}>
               {v.symbol}
             </option>
           ))}
         </select>
-        <div className="flex justify-between gap-1">
-          <input disabled className="bg-white w-full" value={(quote?.satoshis ?? 0) / 1e8} />
-          <button className="border-black border-2 w-full" onClick={() => getQuote()}>
+        <div className="flex justify-between items-center gap-3 mt-3">
+          <input
+            disabled
+            className="bg-gray-100 border border-gray-300 rounded-lg px-3 py-2 w-full text-center text-gray-700"
+            value={(quote?.satoshis ?? 0) / 1e8}
+          />
+          <button
+            className="border-2 border-gray-300 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 w-full"
+            onClick={() => getQuote()}
+          >
             Get Quote
           </button>
         </div>
-        <p>
-          You will be getting: {(quote?.satoshis ?? 0) / 1e8} {btcOption}
+        <p className="text-gray-800 mt-2">
+          You will be getting:{" "}
+          <span className="font-semibold">
+            {(quote?.satoshis ?? 0) / 1e8} {btcOption}
+          </span>
         </p>
-        <p>You wil be getting ETH worth of: {(quote?.fee ?? 0) / 1e8} BTC</p>
+        <p className="text-gray-800">
+          You will be getting ETH worth of: <span className="font-semibold">{(quote?.fee ?? 0) / 1e8} BTC</span>
+        </p>
       </div>
-      <div className="flex flex-col gap-1 mt-3 align-middle">
-        <button className="border-black border-2 p-2" onClick={() => startOrder()} disabled={!quote}>
+      <div className="flex flex-col gap-3 mt-5">
+        {!quote && <p className="self-center">Get Quote to continue!</p>}
+        <button
+          className="border-2 border-gray-300 bg-green-500 text-white px-4 py-3 rounded-lg hover:bg-green-600 w-full disabled:bg-gray-400 disabled:border-gray-400 disabled:cursor-not-allowed"
+          onClick={() => startOrder()}
+          disabled={!quote}
+        >
           Start Order
         </button>
       </div>

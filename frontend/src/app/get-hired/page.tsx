@@ -15,28 +15,21 @@
 //     />
 "use client";
 
+import AvailabilityForm from "@/components/AvailabilityForm";
 import { useState } from "react";
-import Header from "./Header";
-import JobPostings from "./JobPostings";
-import * as Dialog from "@radix-ui/react-dialog";
-import JobModal from "./JobModal";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export default function Page() {
   const [selectedId, setSelectedId] = useState(0);
+  const jobTypes = [
+    "Barista",
+    "Cashier",
+    "Kitchen/Line Cook",
+    "Server/Floor Staff",
+    "Diswasher",
+    "Baker/Pastry Chef",
+    "Runner/Busser",
+    "Delivery/Rider",
+  ];
 
-  return (
-    <div className="w-[600px] max-w-[95%]">
-      <Header />
-      <JobPostings setSelectedId={setSelectedId} />
-      <Dialog.Root open={selectedId !== 0} onOpenChange={(open) => !open && setSelectedId(0)}>
-        <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 bg-black/70" />
-          <Dialog.Content asChild>
-            <JobModal setSelectedId={setSelectedId} />
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
-    </div>
-  );
+  return <AvailabilityForm {...{ jobTypes }} />;
 }
