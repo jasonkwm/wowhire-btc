@@ -1,5 +1,6 @@
 "use client";
-import { useAccount, useBalance } from "@gobob/sats-wagmi";
+import { useAccount as useSatsAccount, useBalance } from "@gobob/sats-wagmi";
+import { useAccount } from "wagmi";
 import { gatewaySDK } from "@/utils/gateway";
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -11,6 +12,7 @@ import {
 } from "@gobob/bob-sdk/dist/gateway/types";
 import { WalletOptions } from "@/components/WalletOptions";
 import _, { debounce } from "lodash";
+import crypto from "crypto";
 
 export default function Page() {
   const [water, setWater] = useState(false);
@@ -24,7 +26,8 @@ export default function Page() {
   const [refillAmount, setRefillAmount] = useState(0.00001);
   const [quoteParams, setQuoteParams] = useState<GatewayQuoteParams>();
   const [btcOption, setBtcOption] = useState<string>();
-  const { address, connector, publicKey } = useAccount();
+  const { address, connector, publicKey } = useSatsAccount();
+  const { address: evmAddress } = useAccount();
   const { data: balanceData } = useBalance();
 
   useEffect(() => {
@@ -53,12 +56,13 @@ export default function Page() {
   };
 
   const getQuote = async () => {
+    if (!address || !evmAddress) return;
     const qp: GatewayQuoteParams = {
       fromToken: "BTC",
       fromChain: "Bitcoin",
-      fromUserAddress: address!,
+      fromUserAddress: address,
       toChain: "bob-sepolia",
-      toUserAddress: "0x3E9b146534245268574873822640FE43cE462C93",
+      toUserAddress: evmAddress,
       toToken: "tBTC",
       amount: Math.floor(sendAmount * 1e8),
       gasRefill: Math.floor(refillAmount * 1e8),
@@ -92,6 +96,7 @@ export default function Page() {
         <WalletOptions />
       </div>
       <div className="flex flex-col gap-1 align-middle mt-3">
+        <p>EVM Address: {evmAddress}</p>
         <p>Address: {address}</p>
         <p>Balance: {Number(balanceData?.total) / 1e8} BTC</p>
       </div>
