@@ -1,10 +1,10 @@
 # HireWow - Decentralized Hiring Portal for Gig Workers
 
-**HireWow** is a decentralized platform designed to revolutionize the gig economy by simplifying the hiring process and ensuring timely payment for gig workers. Built on Bitcoin and powered by BOB (Bitcoin Onboarding Bot), HireWow abstracts the complexity of blockchain technology, making it easy for employees and gig workers to engage in efficient, secure, and trustless transactions.
+**HireWow** is a decentralized platform designed to revolutionize the gig economy by simplifying the hiring process and ensuring timely payment for gig workers. Built on Bitcoin and powered by BOB (Build On Bitcoin), HireWow abstracts the complexity of blockchain technology, making it easy for employees and gig workers to engage in efficient, secure, and trustless transactions.
 
 ## Key Features
 
-- **Simplified Onboarding**: Employers only need to purchase Bitcoin to get started. The rest is handled by BOB, our onboarding bot, which abstracts all the complexities of interacting with the blockchain.
+- **Simplified Onboarding**: Employers only need to purchase Bitcoin to get started. The rest is handled by BOB, which abstracts all the complexities of interacting with the blockchain.
 - **Job Postings Made Easy**: The smart contract allows employers to create job postings, pick workers, and manage their workforce on demand.
 - **Scalable Workforce**: Employers can scale their workforce as needed, whether expanding quickly for short-term projects or shrinking it as demands decrease.
 - **Timely Payments**: Solves the problem of gig workers not being paid or facing delayed payments. Payments are handled securely through the BOB network, with the terms enforced by smart contracts.
