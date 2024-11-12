@@ -69,6 +69,7 @@ const AddHire = ({
                         }
                         return emp;
                       });
+                      console.log("xd", updatedEmployees);
 
                       setEmployee(updatedEmployees);
                       setHired(true);
