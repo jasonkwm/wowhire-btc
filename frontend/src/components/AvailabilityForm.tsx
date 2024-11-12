@@ -21,6 +21,7 @@ const AvailabilityForm: React.FC<AvailabilityFormProps> = ({ jobTypes }) => {
       startFrom,
       endAt,
       description,
+      hired: false,
     };
     setEmployee((employee: any) => [...employee, formData]);
     console.log("Form submitted:", formData);

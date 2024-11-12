@@ -1,25 +1,11 @@
-// import JobDetails from "@/components/JobDetails";
-
-// export default function Page() {
-//   return (
-//     <JobDetails
-//       imageUrl="/wowhire.jpg"
-//       jobTitle="Cashier"
-//       company="Starbucks"
-//       location="92/4, Floor 2, Sathorn Thani 2 Building, North Sathorn Road, Si Lom, Bang Rak, Bangkok 10500"
-//       workDay="Wednesday"
-//       workHours="8am-12pm"
-//       requirements={["Making Coffee", "Talking to people", "Art on Latte"]}
-//       salary="500"
-//       description="If coffee is your canvas, and mornings don’t start without that perfect pour, you might be our next Barista Extraordinaire. We’re on the hunt for someone who can transform beans and water into magic and serve it up with just the right blend of charm and speed."
-//     />
 "use client";
 
 import AvailabilityForm from "@/components/AvailabilityForm";
+import AvailabilityList from "@/components/AvailabilityList";
 import { useState } from "react";
 
 export default function Page() {
-  const [selectedId, setSelectedId] = useState(0);
+  const [selected, setSelected] = useState(true);
   const jobTypes = [
     "Barista",
     "Cashier",
@@ -31,5 +17,32 @@ export default function Page() {
     "Delivery/Rider",
   ];
 
-  return <AvailabilityForm {...{ jobTypes }} />;
+  return (
+    <div>
+      <ToggleButton {...{ selected, setSelected }} />
+      {selected ? <AvailabilityForm {...{ jobTypes }} /> : <AvailabilityList />}
+    </div>
+  );
+}
+
+function ToggleButton({ selected, setSelected }: { selected: any; setSelected: any }) {
+  const optionOne = "View List";
+  const optionTwo = "View Form";
+  const [option, setOption] = useState(optionOne);
+
+  const handleToggle = () => {
+    const newSelection = option === optionOne ? optionTwo : optionOne;
+    setSelected(option === optionOne ? false : true);
+    setOption(newSelection);
+  };
+  return (
+    <button
+      onClick={handleToggle}
+      className={`m-auto flex items-center justify-center w-32 p-2 rounded-full transition-all duration-300 ${
+        option === optionOne ? "bg-blue-500 text-white" : "bg-primary text-white"
+      }`}
+    >
+      <span className="font-semibold">{option === optionOne ? optionOne : optionTwo}</span>
+    </button>
+  );
 }
