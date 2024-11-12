@@ -4,13 +4,18 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
 import { useGlobalContext } from "@/app/GlobalProvider";
 
-const AddHire = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) => {
+const AddHire = ({
+  setOpen,
+  setHired,
+}: {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  setHired: Dispatch<SetStateAction<boolean>>;
+}) => {
   const [startFrom, setStartFrom] = useState("");
   const [endAt, setEndAt] = useState("");
   const [find, setFind] = useState(false);
-  const { employee } = useGlobalContext();
+  const { employee, setEmployee } = useGlobalContext();
   const [offset, setOffset] = useState(0);
-  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const height = window.innerHeight;
@@ -46,12 +51,31 @@ const AddHire = ({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) =>
                 return null;
               }
               return (
-                <div className="flex flex-1 flex-col gap-y-1" key={index}>
+                <div
+                  className="flex flex-1 flex-col gap-y-1 bg-background p-5 rounded-lg max-h-fit border-2 border-tertiary"
+                  key={index}
+                >
                   <div className="flex gap-x-2 items-center">
-                    <div className="w-10 h-10 rounded-full bg-red-400" />
-                    <p className="text-sm md:text-base">{dude.user}</p>
+                    <div className="min-w-16 min-h-16 rounded-full bg-red-400" />
+                    <p className="text-base truncate">{dude.user}</p>
                   </div>
                   <p className="text-base md:text-xl">{dude.description}</p>
+                  <button
+                    className="px-10 py-2 bg-primary mt-4 font-header text-lg rounded-md"
+                    onClick={() => {
+                      const updatedEmployees = employee.map((emp: any) => {
+                        if (emp === dude) {
+                          return { ...emp, hired: true };
+                        }
+                        return emp;
+                      });
+
+                      setEmployee(updatedEmployees);
+                      setHired(true);
+                    }}
+                  >
+                    Hire!
+                  </button>
                 </div>
               );
             })}

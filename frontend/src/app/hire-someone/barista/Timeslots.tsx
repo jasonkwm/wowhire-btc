@@ -2,7 +2,7 @@ import { useState } from "react";
 import { timeslot } from "./timeslot";
 import { LuArrowBigLeft, LuArrowBigRight } from "react-icons/lu";
 
-const Timeslots = () => {
+const Timeslots = ({ hired }: { hired: boolean }) => {
   const [day, setDay] = useState<"tuesday" | "wednesday">("tuesday");
 
   return (

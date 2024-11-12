@@ -16,6 +16,7 @@ const AvailabilityForm: React.FC<AvailabilityFormProps> = ({ jobTypes }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = {
+      id: employee.length,
       user: address,
       jobType,
       startFrom,

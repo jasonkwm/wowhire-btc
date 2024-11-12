@@ -7,6 +7,7 @@ import AddHire from "./AddHire";
 
 export default function Page() {
   const [open, setOpen] = useState(false);
+  const [hired, setHired] = useState(false);
 
   return (
     <div className="w-full flex justify-center">
@@ -24,13 +25,13 @@ export default function Page() {
               Add hire
             </div>
           </div>
-          <Timeslots />
+          <Timeslots hired={hired} />
         </div>
         <Dialog.Root open={open} onOpenChange={(open) => !open && setOpen(false)}>
           <Dialog.Portal>
             <Dialog.Overlay className="fixed inset-0 bg-black/70" />
             <Dialog.Content asChild>
-              <AddHire setOpen={setOpen} />
+              <AddHire setOpen={setOpen} setHired={setHired} />
             </Dialog.Content>
           </Dialog.Portal>
         </Dialog.Root>
