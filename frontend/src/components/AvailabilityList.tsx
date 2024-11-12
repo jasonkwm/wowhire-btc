@@ -2,6 +2,7 @@ import { useGlobalContext } from "@/app/GlobalProvider";
 import React from "react";
 import { useAccount } from "wagmi";
 import AvailabilityForm from "./AvailabilityForm";
+import Link from "next/link";
 
 interface Employee {
   user: string;
@@ -27,26 +28,36 @@ export default function AvailabilityList() {
         <p className="text-gray-600 text-center">No job postings found for this address.</p>
       ) : (
         <div className="space-y-4">
-          {userPosts.map((post: any, index: any) => (
-            <div
-              key={index}
-              className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
-            >
-              <h3 className="text-lg font-semibold text-gray-800">{post.jobType}</h3>
-              <p className="text-gray-600">Start From: {new Date(post.startFrom).toLocaleDateString()}</p>
-              <p className="text-gray-600">End At: {new Date(post.endAt).toLocaleDateString()}</p>
-              <p className="text-gray-800 mt-2">{post.description}</p>
-              <div className="mt-3">
-                <span
-                  className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${
-                    post.hired ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
-                  }`}
-                >
-                  {post.hired ? "Hired" : "Not Hired"}
-                </span>
+          {userPosts.map((post: any, index: any) => {
+            const PostContent = (
+              <div
+                key={index}
+                className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+              >
+                <h3 className="text-lg font-semibold text-gray-800">{post.jobType}</h3>
+                <p className="text-gray-600">Start From: {new Date(post.startFrom).toLocaleDateString()}</p>
+                <p className="text-gray-600">End At: {new Date(post.endAt).toLocaleDateString()}</p>
+                <p className="text-gray-800 mt-2">{post.description}</p>
+                <div className="mt-3">
+                  <span
+                    className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${
+                      post.hired ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
+                    }`}
+                  >
+                    {post.hired ? "Hired" : "Not Hired"}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+
+            return post.hired ? (
+              <Link href="/employer" key={index} passHref>
+                {PostContent}
+              </Link>
+            ) : (
+              <div key={index}>{PostContent}</div>
+            );
+          })}
         </div>
       )}
     </div>
