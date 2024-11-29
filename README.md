@@ -3,7 +3,7 @@
 **WowHire** is a decentralized platform designed to revolutionize the gig economy by simplifying the hiring process and ensuring timely payment for gig workers. Built on Bitcoin and powered by BOB (Build On Bitcoin), HireWow abstracts the complexity of blockchain technology, making it easy for employees and gig workers to engage in efficient, secure, and trustless transactions.
 
 ## Achievements
-- 🥈 **[2nd Place (BuildOnBob)](https://x.com/encodeclub/status/1856310925969813819)**
+- 🥈 **[2nd Place (BOB)](https://x.com/encodeclub/status/1856310925969813819)**
 
 ## Key Features
 
